@@ -1,1 +1,5 @@
-venv
+env
+__pycache__
+.pytest_cache
+pages/__pycache__
+tests/allure_results

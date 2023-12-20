@@ -1,4 +1,5 @@
 import pytest
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -7,15 +8,13 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="function")
 def browser(request):
-
     user_language = request.config.getoption('language')
-    options = Options()
-    options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    browser = webdriver.Chrome(options=options)
-
-    browser.implicitly_wait(60)
-
+    chrome_options = Options()
+    chrome_options.page_load_strategy = 'eager'
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    chrome_options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+    browser = webdriver.Chrome(options=chrome_options)
+    browser.implicitly_wait(10)
     yield browser
-
     browser.quit()
     
