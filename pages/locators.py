@@ -2,22 +2,28 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    BASKET_BUTTON = (By.CSS_SELECTOR, "span[class='btn-group'] a")
-    
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    BASKET_LINK = (By.CSS_SELECTOR, ".btn-group a.btn.btn-default")
+
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
-class LoginPageLocators():
-    LOGIN = (By.XPATH, "//*[@id='login_form']/h2")
-    REGISTER = (By.XPATH, "//*[@id='register_form']/h2")
+class LoginPageLocators:
+    LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
+    REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+    EMAIL_FIELD = (By.CSS_SELECTOR, "#register_form input[type=email]")
+    PASSWORD_FIELD = (By.CSS_SELECTOR, "#register_form input[name=registration-password1]")
+    PASSWORD_CONFIRM = (By.CSS_SELECTOR, "#register_form input[name=registration-password2]")
+    REG_BUTTON = (By.CSS_SELECTOR, "button[name=registration_submit]")
 
-class ProductPageLocators():
-    ADD_TO_BASKET_BUTTON = (By.XPATH, "//button[contains(@class, 'btn-add-to-basket')]")
-    PRODUCT_NAME = (By.CSS_SELECTOR, "div h1")
-    ADD_TO_BASKET_MESSAGE = (By.CSS_SELECTOR, "div.alertinner > strong")
-    PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main p[class='price_color']")
-    BASKET_PRICE = (By.CSS_SELECTOR, "div.alert div p strong")
+class ProductPageLocators:
+    BASKET_BUTTON = (By.CSS_SELECTOR, "#add_to_basket_form")
+    BASKET_CONFIRM = (By.CSS_SELECTOR, "#messages .alert:nth-child(1) .alertinner>strong")
+    BASKET_PRICE = (By.CSS_SELECTOR, "#messages .alert:nth-child(3) .alertinner strong")
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".col-sm-6 h1")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price_color")
 
 class BasketPageLocators:
-    MESSAGE_EMPTY_BASKET = (By.CSS_SELECTOR, "#content_inner")
-    ITEMS_TO_BUY_NOW = (By.CSS_SELECTOR, ".basket-items")
+    BASKET_ITEMS = (By.CSS_SELECTOR, ".basket-items")
+    EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner>p")
