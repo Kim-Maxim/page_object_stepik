@@ -10,16 +10,17 @@ from .locators import BasePageLocators
 
 
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
 
-class BasePage():
+
+class BasePage:
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
@@ -31,7 +32,7 @@ class BasePage():
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
-        except (NoSuchElementException):
+        except NoSuchElementException:
             return False
         return True
 
@@ -45,7 +46,9 @@ class BasePage():
 
     def is_not_element_present(self, how, what, timeout=4):
         try:
-            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+            WebDriverWait(self.browser, timeout).until(
+                EC.presence_of_element_located((how, what))
+            )
         except TimeoutException:
             return True
         return False
@@ -53,7 +56,8 @@ class BasePage():
     def is_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(
-                EC.presence_of_element_located((how, what)))
+                EC.presence_of_element_located((how, what))
+            )
         except TimeoutException:
             return False
         return True
@@ -73,8 +77,11 @@ class BasePage():
             print("No second alert presented")
 
     def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Ссылка для входа не найдена"
+        assert self.is_element_present(
+            *BasePageLocators.LOGIN_LINK
+        ), "Ссылка для входа не найдена"
 
     def should_be_authorized_user(self):
-        assert self.is_element_present(*BasePageLocators.USER_ICON), "Значок пользователя не найден," \
-                                                                     "вероятно, неавторизованный пользователь"
+        assert self.is_element_present(*BasePageLocators.USER_ICON), (
+            "Значок пользователя не найден," "вероятно, неавторизованный пользователь"
+        )
