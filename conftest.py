@@ -17,7 +17,7 @@ def browser(request):
     chrome_options.page_load_strategy = "eager"
     chrome_options.add_argument("--headless")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    chrome_options.set_capability("browserVersion", "118")
+    # chrome_options.set_capability("browserVersion", "118")
     chrome_options.add_argument("--log-level=1")
     chrome_options.add_experimental_option(
         "prefs", {"intl.accept_languages": user_language}
