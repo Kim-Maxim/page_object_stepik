@@ -14,6 +14,7 @@ def browser(request):
     chrome_options = Options()
     chrome_options.page_load_strategy = 'eager'
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    chrome_options.add_argument("--headless")
     chrome_options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
     browser = webdriver.Chrome(options=chrome_options)
     browser.implicitly_wait(10)
